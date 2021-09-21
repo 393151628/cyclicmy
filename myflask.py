@@ -1,14 +1,15 @@
-from flask import Flask
-from cyclicmy.cyclicmy import main
+from flask import Flask, request, jsonify
+import cyclicmy
 
 app = Flask(__name__)
 
 
-@app.route("/")
-def hello():
-    main()
-    return "Hello World!"
+@app.route("/api/compute", methods=['POST'])
+def recive_code():
+    data = request.get_json()
+    num = cyclicmy.compute(data['code'])
+    return jsonify({"cyclic": num})
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0", port=8888)
