@@ -10,4 +10,6 @@ setuptools.setup(
     author_email="393151628@qq.com",
     packages=setuptools.find_packages(),
     license="MIT",
+    install_requires=["tree_sitter"],
+    include_package_data=True,
 )
